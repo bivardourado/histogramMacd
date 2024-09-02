@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #e74c3c;
+}
+
+.symbols-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.symbol-item {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    width: calc(25% - 20px); /* Ajuste a largura para 4 colunas com espaço entre elas */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.no-data {
+    font-style: italic;
+    color: #666;
+}
