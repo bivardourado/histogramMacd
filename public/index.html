@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moedas Vermelhas - MACD Histogram</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Moedas Vermelhas (MACD Histogram abaixo de 0)</h1>
+        <div id="symbolsContainer" class="symbols-container">
+            <!-- Moedas serão inseridas aqui -->
+        </div>
+    </div>
+
+    <script>
+        async function fetchRedSymbols() {
+            try {
+                const response = await fetch('http://localhost:3000/red-symbols');
+                const redSymbols = await response.json();
+                const container = document.querySelector('#symbolsContainer');
+                container.innerHTML = '';
+
+                if (redSymbols.length > 0) {
+                    redSymbols.forEach(symbol => {
+                        const symbolDiv = document.createElement('div');
+                        symbolDiv.classList.add('symbol-item');
+                        symbolDiv.textContent = symbol;
+                        container.appendChild(symbolDiv);
+                    });
+                } else {
+                    const noDataDiv = document.createElement('div');
+                    noDataDiv.classList.add('no-data');
+                    noDataDiv.textContent = 'Nenhuma moeda está com histograma abaixo de zero no momento.';
+                    container.appendChild(noDataDiv);
+                }
+            } catch (error) {
+                console.error('Erro ao buscar moedas vermelhas:', error);
+            }
+        }
+
+        // Carrega as moedas vermelhas ao carregar a página
+        window.onload = () => {
+            fetchRedSymbols();
+            // Atualiza a lista a cada 3 segundos (3000 milissegundos)
+            setInterval(fetchRedSymbols, 3000);
+        };
+    </script>
+</body>
+</html>
